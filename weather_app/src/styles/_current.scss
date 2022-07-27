@@ -1,0 +1,125 @@
+@import './utilities';
+
+.current_container {
+    margin-left: 20vw;
+    margin-right: 20vw;
+    padding: 15px 25px;
+    margin-top: 30px;
+    background: #ffffff;
+    box-shadow: 3px 2px 15px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+
+    .current_header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        h3 {
+            color: rgb(61, 61, 61);
+        }
+    }
+
+    .current_body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+
+
+        h3 {
+            color: $header-color;
+            text-align: center;
+            font-size: 23px;
+        }
+
+        .current_temperature {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+
+            span {
+                font-size: 55px;
+                color: $header-color;
+            }
+        }
+
+        .temperature_description {
+            text-transform: capitalize;
+        }
+
+        h4 {
+            color: $header-color;
+            font-size: 20px;
+        }
+
+        .details_temperature {
+            width: 250px; // Cambiar luego en movil
+
+            .detail_container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+
+                .detail_temperature {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        font-size: 18px;
+                        color: $header-color;
+                        font-weight: 600;
+                        margin-left: 5px;
+                    }
+                }
+            }
+
+            .humidity .detail_humidity,
+            .wind .detail_wind,
+            .pressure .detail_pressure {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 7px;
+                margin-bottom: 2px;
+
+                span {
+                    font-family: 14px;
+                    color: $header-color;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 756px) {
+    .current_container {
+        padding: 10px 12px;
+        margin-left: 10vw;
+        margin-right: 10vw;
+
+        .temperature {
+            width: 100%;
+
+            h3 {
+                font-size: 30px;
+            }
+
+            .current_temperature {
+                margin-top: -12px;
+                justify-content: center;
+            }
+
+            h4 {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .details_temperature {
+        width: 100%;
+    }
+}
