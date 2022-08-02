@@ -5,20 +5,28 @@ export const Current = () => {
     const [currentWeather, setCurrentWeather] = useState();
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState("");
+    const [isCelsius, setIsCelsius] = useState(true);
+    const [city, setCity] = useState("Barcelona");
     const weather_icon_url = "http://openweathermap.org/img/wn/";
 
     useEffect(() => {
-        getWeatherData();
-    }, [])
+        getWeatherData(city);
+    }, [isCelsius])
 
-    const getWeatherData = async () => {
+    const getWeatherData = async (city) => {
+        let url = "";
+        loading(true);
         // Get if its celsius or farenheit
+        if (isCelsius) {
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`;
+        } else {
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`
+        }
         // Depending on the measure we have to add imperial unit to the url
         // Add the city to the url
         // Return corresponding data
         setTimeout(async () => {
             try {
-                const url = "https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en";
                 const petition = await fetch(url);
                 const data = await petition.json();
                 await console.log(data);
@@ -35,12 +43,16 @@ export const Current = () => {
         }, 800)
     }
 
-    const getCelsius = (temp) => {
-        return Math.round((temp - 273.15).toFixed(1));
+    const toggleMeasure = () => {
+        return setIsCelsius(!isCelsius);
     }
 
-    const getFarenheit = (temp) => {
-
+    const getCelsius = (temp) => {
+        if (isCelsius) {
+            return Math.round((temp - 273.15).toFixed(1));
+        } else {
+            return Math.round((temp).toFixed(1));
+        }
     }
 
     if (errors != "") {
@@ -61,7 +73,7 @@ export const Current = () => {
                 <div className="current_header">
                     <h2>Current Weather</h2>
                     <label className="toggle">
-                        <input type="checkbox" />
+                        <input type="checkbox" onClick={toggleMeasure}/>
                         <span className="slider"></span>
                         <span className="labels" data-on="Fº" data-off="Cº"></span>
                     </label>
