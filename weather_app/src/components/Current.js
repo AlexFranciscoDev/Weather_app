@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 export const Current = () => {
     const [currentWeather, setCurrentWeather] = useState();
     const [loading, setLoading] = useState(true);
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState("");
     const weather_icon_url = "http://openweathermap.org/img/wn/";
 
     useEffect(() => {
@@ -12,17 +12,25 @@ export const Current = () => {
     }, [])
 
     const getWeatherData = async () => {
+        // Get if its celsius or farenheit
+        // Depending on the measure we have to add imperial unit to the url
+        // Add the city to the url
+        // Return corresponding data
         setTimeout(async () => {
             try {
                 const url = "https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en";
                 const petition = await fetch(url);
                 const data = await petition.json();
                 await console.log(data);
+                if (data.cod === "404") {
+                    setErrors(data.message);
+                    throw "Ders an error";
+                    console.log("errorrrr");
+                }
                 setCurrentWeather(data);
                 setLoading(false);
             } catch (error) {
                 console.log(error);
-                setErrors(error.message);
             }
         }, 800)
     }
@@ -31,15 +39,24 @@ export const Current = () => {
         return Math.round((temp - 273.15).toFixed(1));
     }
 
-    if (loading) {
+    const getFarenheit = (temp) => {
+
+    }
+
+    if (errors != "") {
+        return (
+            <div>
+                <span className="error">{errors}</span>
+            </div>
+        )
+    } else if (loading) {
         return (
             <div>
                 Loading data...
             </div>
         )
-    } else {
+    } else if (!loading && errors === "") {
         return (
-
             <div className="current_container">
                 <div className="current_header">
                     <h2>Current Weather</h2>

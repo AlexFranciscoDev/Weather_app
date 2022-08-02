@@ -95,6 +95,11 @@
     }
 }
 
+.error {
+    color: white;
+    background: red;
+}
+
 @media only screen and (max-width: 756px) {
     .current_container {
         padding: 10px 12px;
