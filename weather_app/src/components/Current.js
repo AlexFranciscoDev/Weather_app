@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-export const Current = () => {
+export const Current = ({location}) => {
     const [currentWeather, setCurrentWeather] = useState();
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState("");
@@ -14,6 +14,10 @@ export const Current = () => {
     }, [isCelsius])
 
     const getWeatherData = async (city) => {
+        console.log("current:" + location);
+        if (location) {
+            setCity(location);
+        }
         let url = "";
         // Get if its celsius or farenheit
         if (isCelsius) {
@@ -34,8 +38,6 @@ export const Current = () => {
                     throw "Ders an error";
                     console.log("errorrrr");
                 }
-                // setCurrentWeather(data);
-
                 setCurrentWeather({
                     name: data.name,
                     iconWeather: data.weather[0].icon,
