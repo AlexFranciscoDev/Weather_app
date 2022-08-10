@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-export const Current = ({location}) => {
+export const Current = ({ location }) => {
     const [currentWeather, setCurrentWeather] = useState();
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState("");
@@ -10,8 +10,13 @@ export const Current = ({location}) => {
     const weather_icon_url = "http://openweathermap.org/img/wn/";
 
     useEffect(() => {
+        console.log("changing location");
+        setCity(location);
+    })
+
+    useEffect(() => {
         getWeatherData(city);
-    }, [isCelsius])
+    }, [isCelsius, city])
 
     const getWeatherData = async (city) => {
         console.log("current:" + location);
@@ -30,6 +35,7 @@ export const Current = ({location}) => {
         // Return corresponding data
         setTimeout(async () => {
             try {
+                setErrors(""); // Restart errors just in case there is an error previously
                 const petition = await fetch(url);
                 const data = await petition.json();
                 await console.log(data);
@@ -68,6 +74,19 @@ export const Current = ({location}) => {
         } else {
             return Math.round((temp).toFixed(1));
         }
+    }
+
+    const getWeatherBySearch = async (q) => {
+        let url = "";
+        // Get if its celsius or farenheit
+        if (isCelsius) {
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`;
+        } else {
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`
+        }
+        const response = await fetch(url);
+        const responseJson = await response.json();
+        return responseJson;
     }
 
     if (errors != "") {

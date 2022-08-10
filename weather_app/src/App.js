@@ -13,7 +13,6 @@ function App() {
   }
 
   const handleSearch = (search) => {
-    console.log("daw daw" + search);
     setLocation(search);
   }
   
