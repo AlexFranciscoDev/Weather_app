@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-export const Current = ({ location }) => {
+export const Current = ({ location, handleMeasure }) => {
     const [currentWeather, setCurrentWeather] = useState();
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState("");
@@ -10,8 +10,11 @@ export const Current = ({ location }) => {
     const weather_icon_url = "http://openweathermap.org/img/wn/";
 
     useEffect(() => {
-        console.log("changing location");
-        setCity(location);
+        if (location) {   
+            setCity(location);
+        } else {
+            setCity(city);
+        }
     })
 
     useEffect(() => {
@@ -19,7 +22,6 @@ export const Current = ({ location }) => {
     }, [isCelsius, city])
 
     const getWeatherData = async (city) => {
-        console.log("current:" + location);
         if (location) {
             setCity(location);
         }
@@ -61,10 +63,11 @@ export const Current = ({ location }) => {
             } catch (error) {
                 console.log(error);
             }
-        })
+        }, 1000)
     }
 
     const toggleMeasure = () => {
+        handleMeasure(isCelsius);
         return setIsCelsius(!isCelsius);
     }
 
@@ -76,18 +79,7 @@ export const Current = ({ location }) => {
         }
     }
 
-    const getWeatherBySearch = async (q) => {
-        let url = "";
-        // Get if its celsius or farenheit
-        if (isCelsius) {
-            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`;
-        } else {
-            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`
-        }
-        const response = await fetch(url);
-        const responseJson = await response.json();
-        return responseJson;
-    }
+    
 
     if (errors != "") {
         return (
@@ -107,7 +99,7 @@ export const Current = ({ location }) => {
                 <div className="current_header">
                     <h2>Current Weather</h2>
                     <label className="toggle">
-                        <input type="checkbox" onClick={toggleMeasure} />
+                        <input type="checkbox" onClick={toggleMeasure}/>
                         <span className="slider"></span>
                         <span className="labels" data-on="Fº" data-off="Cº"></span>
                     </label>

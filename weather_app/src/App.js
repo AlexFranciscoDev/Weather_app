@@ -3,17 +3,22 @@ import { Current } from './components/Current';
 import { Search } from './components/Search';
 import './styles/styles.scss';
 import { useState } from 'react';
+import { Forecast } from './components/Forecast';
 
 function App() {
   const [location, setLocation] = useState("");
+  const [isCelsius, setIsCelsius] = useState(true);
 
   const getSearchHandler = (receivedLocation) => {
     setLocation(receivedLocation);
-    console.log("my location: " + location);
   }
 
   const handleSearch = (search) => {
     setLocation(search);
+  }
+
+  const handleMeasure = (measure) => {
+    setIsCelsius(!measure);
   }
   
   return (
@@ -23,8 +28,10 @@ function App() {
         <Search handleSearch={handleSearch}/>
       </header>
       <div>
-        <Current location={location}/>
+        <Current location={location} handleMeasure={handleMeasure}/>
+        <Forecast isCelsius={isCelsius} location={location}/>
       </div>
+
     </div>
   );
 }

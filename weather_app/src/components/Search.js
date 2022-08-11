@@ -14,9 +14,7 @@ export const Search = (props) => {
   }
 
   const handleChange = (e) => {
-    
       setSearch(e.target.value);
-    
   }
 
   return (
