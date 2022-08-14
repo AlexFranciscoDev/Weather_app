@@ -1,0 +1,11 @@
+@import "./utilities";
+
+.forecastContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    .singleForecast {
+        flex: 1;
+    }
+}

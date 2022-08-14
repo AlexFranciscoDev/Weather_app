@@ -63,7 +63,7 @@ export const Current = ({ location, handleMeasure }) => {
             } catch (error) {
                 console.log(error);
             }
-        }, 1000)
+        })
     }
 
     const toggleMeasure = () => {
@@ -95,7 +95,7 @@ export const Current = ({ location, handleMeasure }) => {
         )
     } else if (!loading && errors === "") {
         return (
-            <div className="current_container">
+            <div>
                 <div className="current_header">
                     <h2>Current Weather</h2>
                     <label className="toggle">

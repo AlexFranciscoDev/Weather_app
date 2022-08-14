@@ -27,7 +27,7 @@ function App() {
         <h1>Weather App</h1>
         <Search handleSearch={handleSearch}/>
       </header>
-      <div>
+      <div className="current_container">
         <Current location={location} handleMeasure={handleMeasure}/>
         <Forecast isCelsius={isCelsius} location={location}/>
       </div>

@@ -18,9 +18,10 @@ export const Forecast = ({ isCelsius, location }) => {
 
     useEffect(() => {
         getForecastData(city);
-    }, [isForecastCelsius, city])
+    }, [isCelsius, city])
 
     const getForecastData = async (city) => {
+        console.log("changing...");
         if (location) {
             setCity(location);
         }
@@ -29,7 +30,7 @@ export const Forecast = ({ isCelsius, location }) => {
         if (isForecastCelsius) {
             url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=7&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`;
         } else {
-            url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&cnt=7&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`
+            url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=a63085dfaa8f36e6baa8cc0edf7d3eb3&lang=en`
         }
 
         try {
@@ -41,22 +42,48 @@ export const Forecast = ({ isCelsius, location }) => {
                 setErrors(data.message);
                 throw "Ders an error";
                 console.log("errorrrr");
-                
             }
-            
-            data.list.map((weatherData) =>
-                {setForecastWeather(forecastWeather => [...forecastWeather, weatherData]);}
-            );
-            // TODO: subir info de cada hora coomo currentWeatherJSON
+            setForecastWeather([]);
+            data.list.map((weatherData) => {
+                setForecastWeather(
+                    forecastWeather => [...forecastWeather,
+                    {
+                        hour: weatherData.dt_txt.slice(11, 16),
+                        icon: weatherData.weather[0].icon,
+                        temp_max: getCelsius(weatherData.main.temp_max),
+                        temp_min: getCelsius(weatherData.main.temp_min)
+                    }
+                    ]
+                );
+            });
+
         } catch (error) {
             console.log(error);
         }
 
     }
 
+    const getCelsius = (temp) => {
+        if (isCelsius) {
+            return Math.round((temp - 273.15).toFixed(1));
+        } else {
+            return Math.round((1.8 * (temp - 273) + 32).toFixed(1));
+        }
+    }
+
     return (
-        <div>
-            <h3>ahaol</h3>
-        </div>
+        <>
+            <h2>Extended Forecast</h2>
+            <div className="forecastContainer">
+                {forecastWeather.map((data) =>
+                    <div className="singleForecast" key={data.hour}>
+                        <h3>{data.hour}</h3>
+                        <img width="60" src={weather_icon_url + data.icon + ".png"} alt="weather_icon" />
+                        <h4>{data.desc}</h4>
+                        <p>{data.temp_max}º / {data.temp_min}º</p>
+                    </div>
+                )}
+            </div>
+        </>
     )
 }
