@@ -1,0 +1,27 @@
+.footer_container {
+    margin-top: 50px;
+    h4, h5 {
+        color: white;
+        font-size: 17px;
+    }
+}
+
+.ft-social-list {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding-left: 0px;
+    color: white;
+
+    li a {
+        margin: 0px 10px;
+    }
+
+    li a img {
+        transition: all 0.5s ease;
+    }
+
+    li a img:hover {
+        transform: translateY(-5px);
+    }
+}

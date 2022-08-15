@@ -4,6 +4,7 @@ import { Search } from './components/Search';
 import './styles/styles.scss';
 import { useState } from 'react';
 import { Forecast } from './components/Forecast';
+import { Footer } from './components/Footer';
 
 function App() {
   const [location, setLocation] = useState("");
@@ -24,14 +25,14 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Weather App</h1>
+        <h1 className="weather_title">Weather App</h1>
         <Search handleSearch={handleSearch}/>
       </header>
       <div className="current_container">
         <Current location={location} handleMeasure={handleMeasure}/>
         <Forecast isCelsius={isCelsius} location={location}/>
       </div>
-
+      <Footer/>
     </div>
   );
 }

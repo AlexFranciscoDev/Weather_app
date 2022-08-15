@@ -50,6 +50,7 @@ export const Forecast = ({ isCelsius, location }) => {
                     {
                         hour: weatherData.dt_txt.slice(11, 16),
                         icon: weatherData.weather[0].icon,
+                        desc: weatherData.weather[0].description,
                         temp_max: getCelsius(weatherData.main.temp_max),
                         temp_min: getCelsius(weatherData.main.temp_min)
                     }
@@ -73,11 +74,11 @@ export const Forecast = ({ isCelsius, location }) => {
 
     return (
         <>
-            <h2>Extended Forecast</h2>
+            <h2 className="forecast_title">Extended Forecast</h2>
             <div className="forecastContainer">
                 {forecastWeather.map((data) =>
                     <div className="singleForecast" key={data.hour}>
-                        <h3>{data.hour}</h3>
+                        <h3>{data.hour}h</h3>
                         <img width="60" src={weather_icon_url + data.icon + ".png"} alt="weather_icon" />
                         <h4>{data.desc}</h4>
                         <p>{data.temp_max}º / {data.temp_min}º</p>

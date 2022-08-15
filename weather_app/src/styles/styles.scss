@@ -11,6 +11,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; 
+    background-attachment: fixed;
 }
 
 header h1 {
@@ -106,4 +107,9 @@ header h1 {
 
 .toggle input:checked~.labels::before {
     opacity: 1;
+}
+
+.weather_title {
+    color: white;
+    font-weight: 700;
 }

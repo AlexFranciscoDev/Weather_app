@@ -1,11 +1,38 @@
 @import "./utilities";
 
+.forecast_title {
+    color: $header-color;
+}
+
 .forecastContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     
     .singleForecast {
-        flex: 1;
+        flex-grow: 1;
+        h3, h4 {
+            color: $header-color;
+            text-transform: capitalize;
+        }
+
+        p {
+            font-weight: 600;
+            color: rgb(122, 121, 121);
+        }
+    }
+}
+
+@media only screen and (max-width: 1180px) {
+    .singleForecast {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 756px) {
+    .singleForecast {
+        width: 50%;
     }
 }

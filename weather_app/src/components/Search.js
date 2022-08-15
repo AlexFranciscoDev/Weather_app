@@ -25,7 +25,8 @@ export const Search = (props) => {
               type="text" 
               name="location" 
               id="location"
-              onChange={handleChange}/>
+              onChange={handleChange}
+              placeholder="Search city..."/>
             <button onClick={() => handleSearch(search)}>Search</button>
         </div>
     </div>
