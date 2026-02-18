@@ -93,3 +93,6 @@ http://localhost:3000
 
 ## 🎥 Preview
 
+![Weather-App-Demo](https://raw.githubusercontent.com/AlexFranciscoDev/Weather_app/main/public/weather-app.gif)
+
+
