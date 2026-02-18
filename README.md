@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# 🌤 Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based weather application that fetches real-time weather data from an external API and displays dynamic weather information based on user input.
 
-## Available Scripts
+This project focuses on API integration, asynchronous JavaScript handling and dynamic UI updates.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🛠 Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React (Create React App)
+- JavaScript (ES6+)
+- REST API (Weather API)
+- CSS
+- Fetch API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## ✨ Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Search weather by city name
+- Display current temperature and a range of temperatures every 3 hours from current time
+- Change between Farenheit and Celsius
+- Show weather condition and icon
+- Dynamic UI updates based on search
+- Loading state handling
+- ❌ Basic error handling for invalid searches
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🌐 API Integration
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The application consumes data from a public weather API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Weather data is fetched dynamically using asynchronous requests and rendered based on React state.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧠 The Process
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app was built focusing on:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Managing asynchronous API calls using async/await
+- Updating UI dynamically based on user search
+- Handling loading and error states
+- Structuring a small React application using reusable components
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+One of the main challenges was ensuring proper error handling and preventing UI crashes when the API response was invalid.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📚 What I Learned
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Working with external REST APIs
+- Managing asynchronous operations in React
+- Conditional rendering
+- Improving user experience with loading states
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🔮 Improvements
 
-### Analyzing the Bundle Size
+- Add 5-day forecast
+- Add geolocation support
+- Improve error UI feedback
+- Add unit tests
+- Migrate to TypeScript
+- If city is not found, don't display anything, because right now it displays the data from the default city, which is "Barcelona"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## ▶️ Running the Project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Clone the repository:
 
-### Advanced Configuration
+```bash
+git clone https://github.com/AlexFranciscoDev/Weather_app.git
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Install dependencies:
+```
+npm install
+```
 
-### Deployment
+Run locally:
+```
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The app will be available at:
 
-### `npm run build` fails to minify
+http://localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🎥 Preview
+
